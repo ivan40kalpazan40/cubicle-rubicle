@@ -1,6 +1,6 @@
 const uniqid = require('uniqid');
 class Cube {
-  static #cubes = [
+  static cubes = [
     {
       id: 'dafgGgDf326534tgv',
       name: 'Classic Rubik Cube',
@@ -27,10 +27,10 @@ class Cube {
     this.difficulty = difficulty;
   }
   static getAll() {
-    return Cube.#cubes.slice();
+    return Cube.cubes.slice();
   }
   static add(cube) {
-    Cube.#cubes.push(cube);
+    Cube. cubes.push(cube);
   }
 }
 module.exports = Cube;

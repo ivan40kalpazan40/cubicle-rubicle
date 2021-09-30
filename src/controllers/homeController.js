@@ -2,7 +2,6 @@ const express = require('express');
 const { Error } = require('mongoose');
 const cubeService = require('../services/cubeService');
 const router = express.Router();
-let counter = 0;
 
 const renderHome = (req, res) => {
   cubeService

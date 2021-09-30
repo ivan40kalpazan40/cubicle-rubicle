@@ -14,10 +14,18 @@ const getCreateCube = (req, res) => {
   });
 };
 const createCube = (req, res) => {
-  console.log(req.body);
   const { name, description, imageUrl, difficulty } = req.body;
-  cubeService.create(name, description, imageUrl, difficulty);
-  res.redirect('/');
+  cubeService
+    .create(name, description, imageUrl, difficulty)
+    .then((cube) => {
+      console.log(cube);
+      console.log('Cube created');
+      res.redirect('/');
+    })
+    .catch((err) => {
+      console.log(`ERR:: ${err.message}`);
+      res.render('404', { msg: err.name });
+    });
 };
 
 router.get('/create', getCreateCube);

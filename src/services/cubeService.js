@@ -4,11 +4,10 @@ const getAll = async () => {
   const cubes = await Cube.find();
   return cubes;
 };
-const getOne = (id) => Cube.cubes.find((x) => x.id === id);
+const getOne = (id) => Cube.findById(id);
 
 const create = (name, description, imageUrl, difficulty) => {
-  let cube = new Cube(name, description, imageUrl, difficulty);
-  Cube.add(cube);
+  return Cube.create({ name, description, imageUrl, difficulty });
 };
 const search = (text, from, to) => {
   let result = Cube.cubes;

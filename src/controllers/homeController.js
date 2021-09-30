@@ -1,6 +1,8 @@
 const express = require('express');
+const { Error } = require('mongoose');
 const cubeService = require('../services/cubeService');
 const router = express.Router();
+let counter = 0;
 
 const renderHome = (req, res) => {
   cubeService
@@ -25,8 +27,38 @@ const renderAbout = (req, res) => {
 
 const search = (req, res) => {
   let { search, from, to } = req.query;
-  let cubes = cubeService.search(search, from, to);
-  res.render('index', { title: 'SEARCH', cubes });
+  cubeService
+    .getAll()
+    .then((cubes) => {
+      let items = cubes.map((cube) => {
+        return {
+          id: cube.id,
+          name: cube.name,
+          imageUrl: cube.imageUrl,
+          description: cube.description,
+          difficulty: cube.difficulty,
+        };
+      });
+      if (search) {
+        items = items.filter((x) =>
+          x.name.toLowerCase().includes(search.toLowerCase())
+        );
+        console.log(items);
+      }
+      if (from) {
+        items = items.filter((x) => x.difficulty >= from);
+      }
+      if (to) {
+        items = items.filter((x) => x.difficulty <= to);
+      }
+
+      res.render('index', { title: 'SEARCH', items });
+    })
+    .catch((err) => {
+      console.log(err);
+      const er = new Error('Search error');
+      res.render('404', { error: er.name, msg: er.message });
+    });
 };
 
 router.get('/', renderHome);

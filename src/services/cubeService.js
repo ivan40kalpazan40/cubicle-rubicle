@@ -10,21 +10,12 @@ const create = (name, description, imageUrl, difficulty) => {
   return Cube.create({ name, description, imageUrl, difficulty });
 };
 const search = (text, from, to) => {
-  let result = Cube.cubes;
-  if (text) {
-    result = result.filter((x) =>
-      x.name.toLowerCase().includes(text.toLowerCase())
-    );
-  }
 
-  if (from) {
-    result = result.filter((x) => x.difficulty >= from);
-  }
+  // Find all entries in DB and store in const
+  // Cube.find()
+  // Filter consequently text, from, to and leave out not matched data
+  // 
 
-  if (to) {
-    result = result.filter((x) => x.difficulty < to);
-  }
-  return result;
 };
 
 const cubeService = { create, getAll, getOne, search };

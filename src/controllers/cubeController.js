@@ -11,6 +11,7 @@ const cubeDetails = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.render('404', { error: err.name, msg: err.message });
     });
 };
 

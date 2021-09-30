@@ -1,5 +1,9 @@
+const mongoose = require('mongoose');
 const Cube = require('../models/Cube');
-const getAll = () => Cube.getAll();
+const getAll = async () => {
+  const cubes = await Cube.find();
+  return cubes;
+};
 const getOne = (id) => Cube.cubes.find((x) => x.id === id);
 
 const create = (name, description, imageUrl, difficulty) => {

@@ -8,9 +8,10 @@ const cubeDetails = (req, res) => {
 };
 
 const getCreateCube = (req, res) => {
-  let cubes = cubeService.getAll();
-  console.log(cubes);
-  res.render('create');
+  let cubes = cubeService.getAll().then((cubes) => {
+    //console.log(cubes);
+    res.render('create');
+  });
 };
 const createCube = (req, res) => {
   console.log(req.body);

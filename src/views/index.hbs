@@ -1,10 +1,10 @@
 <main>
   {{#if title}}
-  <h1>{{title}}</h1>
+    <h1>{{title}}</h1>
   {{else}}
-<h1>Browser</h1>
+    <h1>Browser</h1>
   {{/if}}
-  
+
   <form action='/search' method='GET'>
     <input type='text' class='search' name='search' placeholder='Search...' />
     <input
@@ -23,9 +23,14 @@
     <input type='submit' value='search' />
   </form>
   <div class='cubes'>
-{{#each cubes}}
-  {{>cube}}
-{{/each}}
+    {{#each items}}
+      <div class='cube'>
+        <img class='cube' src='{{this.imageUrl}}' />
+        <p class='name'>{{this.name}}</p>
+        <p><span>Difficulty level:</span> {{this.difficulty}}</p>
+        <a class='btn' href='/cube/{{this.id}}'>Details</a>
+      </div>
+    {{/each}}
   </div>
 
 </main>

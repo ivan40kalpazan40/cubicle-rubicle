@@ -3,15 +3,23 @@ const cubeService = require('../services/cubeService');
 const router = express.Router();
 
 const cubeDetails = (req, res) => {
-  let cube = cubeService.getOne(req.params.cubeId);
-  res.render('details', { ...cube });
+  cubeService
+    .getOne(req.params.cubeId)
+    .then((result) => {
+      const cube = result._doc;
+      res.render('details', { ...cube });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
-const getCreateCube = (req, res) => {
-  let cubes = cubeService.getAll().then((cubes) => {
-    //console.log(cubes);
-    res.render('create');
-  });
+const getCreateCube = async (req, res) => {
+  //let cubes = await cubeService.getAll().then((cubes) => {
+  //console.log(cubes);
+
+  //});
+  res.render('create');
 };
 const createCube = (req, res) => {
   const { name, description, imageUrl, difficulty } = req.body;
@@ -23,8 +31,9 @@ const createCube = (req, res) => {
       res.redirect('/');
     })
     .catch((err) => {
-      console.log(`ERR:: ${err.message}`);
-      res.render('404', { msg: err.name });
+      const er = new Error('Form fields must not be empty');
+      console.log(`ERR:: ${er}`);
+      res.render('404', { error: er.name, msg: er.message });
     });
 };
 

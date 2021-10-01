@@ -2,16 +2,15 @@ const express = require('express');
 const cubeService = require('../services/cubeService');
 const router = express.Router();
 
-const cubeDetails = (req, res) => {
-  cubeService
-    .getOne(req.params.cubeId)
-    .then((cube) => {
-      res.render('details', { ...cube });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render('404', { error: err.name, msg: err.message });
-    });
+const cubeDetails = async (req, res) => {
+  const cubeId = await req.params.cubeId;
+  try {
+    const cube = await cubeService.getOne(cubeId);
+    res.render('details', { ...cube });
+  } catch (err) {
+    console.log(err);
+    res.render('404', { error: err.name, msg: err.message });
+  }
 };
 
 const getCreateCube = async (req, res) => {

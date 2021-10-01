@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Cube = require('../models/Cube');
+const Accessory = require('../models/Accessory');
 const getAll = async () => {
   const cubes = await Cube.find();
   return cubes;
@@ -9,14 +10,9 @@ const getOne = (id) => Cube.findById(id);
 const create = (name, description, imageUrl, difficulty) => {
   return Cube.create({ name, description, imageUrl, difficulty });
 };
-const search = (text, from, to) => {
-
-  // Find all entries in DB and store in const
-  // Cube.find()
-  // Filter consequently text, from, to and leave out not matched data
-  // 
-
+const newAccessory = (name, description, imageUrl) => {
+  return Accessory.create({ name, description, imageUrl });
 };
 
-const cubeService = { create, getAll, getOne, search };
+const cubeService = { create, getAll, getOne, newAccessory };
 module.exports = cubeService;

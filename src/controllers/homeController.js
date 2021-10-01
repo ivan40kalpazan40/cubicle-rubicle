@@ -42,7 +42,6 @@ const search = (req, res) => {
         items = items.filter((x) =>
           x.name.toLowerCase().includes(search.toLowerCase())
         );
-        console.log(items);
       }
       if (from) {
         items = items.filter((x) => x.difficulty >= from);

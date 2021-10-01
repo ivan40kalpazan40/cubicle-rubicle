@@ -6,16 +6,7 @@ const router = express.Router();
 const renderHome = (req, res) => {
   cubeService
     .getAll()
-    .then((cubes) => {
-      const items = cubes.map((cube) => {
-        return {
-          id: cube.id,
-          name: cube.name,
-          imageUrl: cube.imageUrl,
-          description: cube.description,
-          difficulty: cube.difficulty,
-        };
-      });
+    .then((items) => {
       res.render('index', { items });
     })
     .catch((err) => console.error(`DB.FIND.ERR:: ${err.error}`));
@@ -28,16 +19,7 @@ const search = (req, res) => {
   let { search, from, to } = req.query;
   cubeService
     .getAll()
-    .then((cubes) => {
-      let items = cubes.map((cube) => {
-        return {
-          id: cube.id,
-          name: cube.name,
-          imageUrl: cube.imageUrl,
-          description: cube.description,
-          difficulty: cube.difficulty,
-        };
-      });
+    .then((items) => {
       if (search) {
         items = items.filter((x) =>
           x.name.toLowerCase().includes(search.toLowerCase())

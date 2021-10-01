@@ -5,8 +5,7 @@ const router = express.Router();
 const cubeDetails = (req, res) => {
   cubeService
     .getOne(req.params.cubeId)
-    .then((result) => {
-      const cube = result._doc;
+    .then((cube) => {
       res.render('details', { ...cube });
     })
     .catch((err) => {

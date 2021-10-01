@@ -9,7 +9,7 @@ const cubeSchema = new mongoose.Schema({
     validate: [/^http?s:\/\//i, 'Invalid url format'],
   },
   difficulty: { type: Number, min: 1, max: 10 },
-  accessories: { type: mongoose.Schema.Types.ObjectId, ref: 'Accessory' },
+  accessories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Accessory' }],
 });
 
 const Cube = mongoose.model('Cube', cubeSchema);

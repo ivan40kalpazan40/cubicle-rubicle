@@ -26,11 +26,6 @@ const oneAccById = async (id) => {
   return acc;
 };
 
-// const oneAcc = async (id) => {
-//   const accessories = await Accessory.find({ _id: id }).lean();
-//   return accessories;
-// };
-
 const accForCube = async (id) => {
   const cube = await getOne(id);
   return await Accessory.find({ _id: { $in: cube.accessories } }).lean();

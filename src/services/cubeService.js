@@ -21,6 +21,28 @@ const allAccessories = async () => {
   const accessories = await Accessory.find({}).lean();
   return accessories;
 };
+const oneAccById = async (id) => {
+  const acc = await Accessory.findById(id).lean();
+  return acc;
+};
 
-const cubeService = { create, getAll, getOne, newAccessory, allAccessories };
+// const oneAcc = async (id) => {
+//   const accessories = await Accessory.find({ _id: id }).lean();
+//   return accessories;
+// };
+
+const accForCube = async (id) => {
+  const cube = await getOne(id);
+  return await Accessory.find({ _id: { $in: cube.accessories } }).lean();
+};
+
+const cubeService = {
+  create,
+  getAll,
+  getOne,
+  newAccessory,
+  allAccessories,
+  oneAccById,
+  accForCube,
+};
 module.exports = cubeService;

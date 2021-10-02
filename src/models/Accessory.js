@@ -8,6 +8,7 @@ const accessorySchema = new mongoose.Schema({
     validate: [/^https?:\/\//i, 'Invalid url format'],
   },
   description: { type: String, required: true, maxlength: 500 },
+  cubes: [{ type: mongoose.Types.ObjectId, ref: 'Cube' }],
 });
 
 const Accessory = mongoose.model('Accessory', accessorySchema);

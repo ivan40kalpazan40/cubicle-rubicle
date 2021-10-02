@@ -6,7 +6,7 @@ const cubeDetails = async (req, res) => {
   const cubeId = await req.params.cubeId;
   try {
     const cube = await cubeService.getOne(cubeId);
-    const accessories = await cubeService.allAccessories();
+    const accessories = await cubeService.accForCube(cube._id);
     res.render('details', { ...cube, accessories });
   } catch (err) {
     console.log(err);

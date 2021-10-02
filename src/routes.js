@@ -8,7 +8,7 @@ router.use(homeController);
 router.use('/cube', cubeController);
 router.use('/accessory', accessoryController);
 router.use('*', (req, res) => {
-  res.render('404');
+  res.render('404', { error: 'Error 404', msg: 'Page not found!' });
 });
 
 module.exports = router;

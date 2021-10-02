@@ -6,7 +6,7 @@ const getAll = async () => {
   return cubes;
 };
 const getOne = async (id) => {
-  const cube = await Cube.findById; //console.log(req.body);(id).lean();
+  const cube = await Cube.findById(id).lean();
   return cube;
 };
 

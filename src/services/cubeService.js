@@ -12,14 +12,13 @@ const getOne = async (id) => {
 
 const create = (name, description, imageUrl, difficulty) => {
   return Cube.create({ name, description, imageUrl, difficulty });
-  // return Cube.create({ name, description, imageUrl, difficulty });
 };
 const newAccessory = (name, description, imageUrl) => {
   return Accessory.create({ name, description, imageUrl });
 };
 
-const allAccessories = async (cubeId) => {
-  const accessories = await Accessory.find({ cubes: [cubeId] });
+const allAccessories = async () => {
+  const accessories = await Accessory.find({}).lean();
   return accessories;
 };
 

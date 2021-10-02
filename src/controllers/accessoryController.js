@@ -26,7 +26,12 @@ const renderAttach = (req, res) => {
   cubeService
     .getOne(id)
     .then((cube) => {
-      res.render('attachAccessory', { cube });
+      cubeService
+        .allAccessories()
+        .then((accessories) => {
+          res.render('attachAccessory', { cube, accessories });
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 };

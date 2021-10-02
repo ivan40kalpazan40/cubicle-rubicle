@@ -5,7 +5,7 @@ const accessorySchema = new mongoose.Schema({
   imageUrl: {
     type: String,
     required: true,
-    validate: [/^http?s:\/\//i, 'Invalid url format'],
+    validate: [/^https?:\/\//i, 'Invalid url format'],
   },
   description: { type: String, required: true, maxlength: 500 },
   cubes: { type: Array, type: mongoose.Schema.Types.ObjectId, ref: 'Cube' },

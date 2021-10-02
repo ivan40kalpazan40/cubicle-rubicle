@@ -6,12 +6,13 @@ const getAll = async () => {
   return cubes;
 };
 const getOne = async (id) => {
-  const cube = await Cube.findById(id).lean();
+  const cube = await Cube.findById; //console.log(req.body);(id).lean();
   return cube;
 };
 
 const create = (name, description, imageUrl, difficulty) => {
   return Cube.create({ name, description, imageUrl, difficulty });
+  // return Cube.create({ name, description, imageUrl, difficulty });
 };
 const newAccessory = (name, description, imageUrl) => {
   return Accessory.create({ name, description, imageUrl });

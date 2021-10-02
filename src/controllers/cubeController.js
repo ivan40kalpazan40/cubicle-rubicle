@@ -25,14 +25,14 @@ const createCube = (req, res) => {
   cubeService
     .create(name, description, imageUrl, difficulty)
     .then((cube) => {
-      console.log(cube);
-      console.log('Cube created');
       res.redirect('/');
     })
-    .catch((err) => {
-      const er = new Error('Form fields must not be empty');
-      console.log(`ERR:: ${er}`);
-      res.render('404', { error: er.name, msg: er.message });
+    .catch((error) => {
+      console.error('CUBE CREATE ERR:: ' + error);
+      res.render('404', {
+        error: 'Cube was not created!',
+        msg: 'Please make sure you provided correct data in the form!',
+      });
     });
 };
 

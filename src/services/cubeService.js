@@ -31,6 +31,11 @@ const accForCube = async (id) => {
   return await Accessory.find({ _id: { $in: cube.accessories } }).lean();
 };
 
+const availableForCube = async (id) => {
+  const cube = await getOne(id);
+  return await Accessory.find({ _id: { $nin: cube.accessories } }).lean();
+};
+
 const cubeService = {
   create,
   getAll,
@@ -39,5 +44,6 @@ const cubeService = {
   allAccessories,
   oneAccById,
   accForCube,
+  availableForCube,
 };
 module.exports = cubeService;

@@ -27,7 +27,7 @@ const renderAttach = (req, res) => {
     .getOne(id)
     .then((cube) => {
       cubeService
-        .allAccessories()
+        .availableForCube(cube._id)
         .then((accessories) => {
           res.render('attachAccessory', { cube, accessories });
         })
